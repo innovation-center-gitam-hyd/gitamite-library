@@ -4,6 +4,7 @@ setup(
     name='gitamite',
     packages=['gitamite','gitamite/*'],
     version='1.0.2',
+    include_package_data=True,
     url='https://github.com/innovation-center-gitam-hyd/gitamite-library',
     description='This is GITAM library for Moodle and Glearn.',
     long_description="""This library can fetch data from Moodle and Glearn like upcoming activities and assignment 
