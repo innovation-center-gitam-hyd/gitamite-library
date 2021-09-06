@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='gitamite',
-    packages=['gitamite','gitamite/*'],
+    packages=['gitamite'],
     version='1.0.2',
     include_package_data=True,
     url='https://github.com/innovation-center-gitam-hyd/gitamite-library',
