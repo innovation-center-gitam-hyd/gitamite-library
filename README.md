@@ -34,4 +34,5 @@ g.loginGlearn()
 timetable = g.getTimetable()
 timetableToday = g.getTimetableToday()
 isLoggedIn = g.isGlearnLoggedIn()
+pendingAssignments = g.getPendingAssignments()
 ```
