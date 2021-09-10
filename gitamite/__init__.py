@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-from  helper import *
+from gitamite.helper import *
 
 class Moodle:
     s = requests.session()
@@ -61,6 +61,19 @@ class Glearn:
         if isWrongGlearn(response.text):
             print("Wrong Credentials")
 
+    def getGlearnHomePage(self):
+        response = self.s.get('https://gstudent.gitam.edu/G-Learn.aspx')
+        return response.text
+
+    def getPendingAssignments(self):
+        response = self.getGlearnHomePage()
+        soup = soupify(response)
+        r = soup.find(id='ContentPlaceHolder1_GridView1')
+        ar=[]
+        for i in r.find_all('td'):
+            ar.append(str(i.text).strip().split('\n'))
+        return ar
+        
     def getTimetable(self):
         response = self.s.get("https://gstudent.gitam.edu/Newtimetable.aspx").text
         response1 = self.s.get("https://gstudent.gitam.edu/G-Learn.aspx").text
