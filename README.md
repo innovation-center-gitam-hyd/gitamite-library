@@ -31,8 +31,11 @@ g.username = 'your_username'
 g.password = 'your_password'
 
 g.loginGlearn()
-timetable = g.getTimetable()
-timetableToday = g.getTimetableToday()
 isLoggedIn = g.isGlearnLoggedIn()
+timetableWithSubCodes = g.getTimetable()
+timetableWithSubNames = g.codeToName(timetableWithSubCodes)
+todayWithSubCodes = g.getTimetableToday()
+todayWithSubNames = g.codeToName(todayWithSubCodes)
+courses = g.getCourses()
 pendingAssignments = g.getPendingAssignments()
 ```
