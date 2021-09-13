@@ -5,11 +5,11 @@ from gitamite import helper
 def isGlearnLoggedIn(self):
     response1 = requests.get("https://gstudent.gitam.edu/Welcome.aspx").text
     response2 = self.s.get("https://gstudent.gitam.edu/Welcome.aspx").text
-    return not helper.soupify(response1).find('title').text == soupify(response2).find('title').text
+    return not helper.soupify(response1).find('title').text == helper.soupify(response2).find('title').text
 
 def loginGlearn(self):
     source = self.s.get("https://login.gitam.edu/Login.aspx").text
-    response = self.s.post("https://login.gitam.edu/Login.aspx", glearnFormData(source, self.username, self.password))
+    response = self.s.post("https://login.gitam.edu/Login.aspx", helper.glearnFormData(source, self.username, self.password))
     if helper.isWrongGlearn(response.text):
         print("Wrong Credentials")
 
@@ -19,7 +19,7 @@ def getGlearnHomePage(self):
 
 def getPendingAssignments(self):
     response = self.getGlearnHomePage()
-    soup = soupify(response)
+    soup = helper.soupify(response)
     r = soup.find(id='ContentPlaceHolder1_GridView1')
     ar=[]
     for i in r.find_all('td'):
