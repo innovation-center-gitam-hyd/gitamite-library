@@ -50,3 +50,6 @@ class Glearn:
 
     def codeToName(self, timetable):
         return glearn.codeToName(self, timetable)
+    
+    def getEventsCalendar(self):
+        return glearn.getEventsCalendar(self)

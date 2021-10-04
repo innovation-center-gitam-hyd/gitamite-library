@@ -1,5 +1,6 @@
 from datetime import datetime
 import requests
+from requests.models import Response
 from gitamite import helper
 
 def isGlearnLoggedIn(self):
@@ -65,3 +66,16 @@ def codeToName(self, timetable):
                 if code in subject:
                     day[day.index(subject)] = name
     return timetable
+
+def getEventsCalendar(self):
+    eventList=[]
+    response = requests.get("https://login.gitam.edu/Eventlist.aspx").text
+    soup = helper.soupify(response)
+    events = soup.find_all("div", class_="event_list_block")
+    for event in events:
+        date = event.find("h6").text
+        title = event.find("h3").text
+        mode = event.find("h5").text
+        branch = event.find_all("h6")[2].text
+        eventList.append((title,date,mode,branch))
+    return eventList
